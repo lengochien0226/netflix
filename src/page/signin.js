@@ -26,7 +26,7 @@ export default function Signin() {
             .then(() => {
                 history.push(ROUTES.BROWSE);
             })
-            .catch((error) => {
+            .catch((error) => { 
                 setEmailAddress('');
                 setPassword('');
                 setError(error.message);
