@@ -28,7 +28,7 @@ export function BrowseContainer({ slides }) {
 
         setSlideRows(() => slides[category]);
         console.log('before intergration', category, slideRows)
-    }, [slides, category]);
+    }, [slides, category, slideRows]);
 
     useEffect(() => {
         const fuse = new Fuse(slideRows, { keys: ['data.description', 'data.title', 'data.genre'] });
@@ -39,7 +39,7 @@ export function BrowseContainer({ slides }) {
         } else {
             setSlideRows(slides[category]);
         }
-    }, [searchTerm]);
+    }, [searchTerm, category, slideRows, slides]);
 
     return profile.displayName ? (
         <>
