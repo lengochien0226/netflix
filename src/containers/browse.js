@@ -1,11 +1,10 @@
-
 import React, { useState, useEffect, useContext } from 'react';
 import Fuse from 'fuse.js';
 import { Card, Header, Loading, Player } from '../components';
-import * as ROUTES from '../constans/routes';
+import * as ROUTES from '../constants/routes';
 import logo from '../logo.svg';
 import { FirebaseContext } from '../context/firebase';
-import { SelectProfileContainer } from './profile';
+import { SelectProfileContainer } from './profiles';
 import { FooterContainer } from './footer';
 
 export function BrowseContainer({ slides }) {
@@ -15,6 +14,7 @@ export function BrowseContainer({ slides }) {
     const [searchTerm, setSearchTerm] = useState('');
     const [slideRows, setSlideRows] = useState([]);
 
+    console.log('after intergration', category, slideRows)
     const { firebase } = useContext(FirebaseContext);
     const user = firebase.auth().currentUser || {};
 
@@ -25,7 +25,9 @@ export function BrowseContainer({ slides }) {
     }, [profile.displayName]);
 
     useEffect(() => {
-        setSlideRows(slides[category]);
+
+        setSlideRows(() => slides[category]);
+        console.log('before intergration', category, slideRows)
     }, [slides, category]);
 
     useEffect(() => {
@@ -47,14 +49,12 @@ export function BrowseContainer({ slides }) {
                 <Header.Frame>
                     <Header.Group>
                         <Header.Logo to={ROUTES.HOME} src={logo} alt="Netflix" />
-                        <Header.TextLink active={category === 'series' ? 'true' : 'false'}
-                            onClick={() => setCategory('series')}>
+                        <Header.TextLink active={category === 'series' ? 'true' : 'false'} onClick={() => setCategory('series')}>
                             Series
-                        </Header.TextLink>
-                        <Header.TextLink active={category === 'films' ? 'true' : 'false'}
-                            onClick={() => setCategory('films')}>
+            </Header.TextLink>
+                        <Header.TextLink active={category === 'films' ? 'true' : 'false'} onClick={() => setCategory('films')}>
                             Films
-                        </Header.TextLink>
+            </Header.TextLink>
                     </Header.Group>
                     <Header.Group>
                         <Header.Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
@@ -79,7 +79,7 @@ export function BrowseContainer({ slides }) {
                         Forever alone in a crowd, failed comedian Arthur Fleck seeks connection as he walks the streets of Gotham
                         City. Arthur wears two masks -- the one he paints for his day job as a clown, and the guise he projects in a
                         futile attempt to feel like he's part of the world around him.
-                    </Header.Text>
+          </Header.Text>
                     <Header.PlayButton>Play</Header.PlayButton>
                 </Header.Feature>
             </Header>

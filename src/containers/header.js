@@ -1,6 +1,6 @@
 import React from 'react';
 import { Header } from '../components';
-import * as ROUTES from '../constans/routes';
+import * as ROUTES from '../constants/routes';
 import logo from '../logo.svg';
 
 export function HeaderContainer({ children }) {

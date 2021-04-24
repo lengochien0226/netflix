@@ -3,9 +3,9 @@ import { useHistory } from 'react-router-dom';
 import { FirebaseContext } from '../context/firebase';
 import { Form } from '../components';
 import { HeaderContainer } from '../containers/header';
-import { FooterContainer } from '../containers/footer';
-import * as ROUTES from '../constans/routes';
-export default function Signup() {
+//import { FooterContainer } from '../containers/footer';
+import * as ROUTES from '../constants/routes';
+export default function SignUp() {
     const history = useHistory();
     const { firebase } = useContext(FirebaseContext);
 

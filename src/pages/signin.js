@@ -4,10 +4,9 @@ import { FirebaseContext } from '../context/firebase';
 import { Form } from '../components';
 import { HeaderContainer } from '../containers/header';
 import { FooterContainer } from '../containers/footer';
-import * as ROUTES from '../constans/routes';
+import * as ROUTES from '../constants/routes';
 
-
-export default function Signin() {
+export default function SignIn() {
     const history = useHistory();
     const { firebase } = useContext(FirebaseContext);
 
@@ -26,7 +25,7 @@ export default function Signin() {
             .then(() => {
                 history.push(ROUTES.BROWSE);
             })
-            .catch((error) => { 
+            .catch((error) => {
                 setEmailAddress('');
                 setPassword('');
                 setError(error.message);
